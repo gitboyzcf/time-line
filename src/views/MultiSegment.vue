@@ -1,0 +1,139 @@
+<template>
+  <div class="container">
+    <div class="timeShow">当前时间：{{ showTime3 }}</div>
+    <div class="timeline3">
+      <TimeLine
+        ref="Timeline3"
+        :initTime="defaultData.time3"
+        @timeChange="timeChange3"
+        :timeSegments="defaultData.timeSegments3"
+        @click_timeSegments="click_timeSegments3"
+        :windowList="defaultData.windowList"
+        @click_window_timeSegments="click_window_timeSegments"
+      ></TimeLine>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import dayjs from 'dayjs'
+import { reactive, ref, computed, onMounted, onBeforeUnmount } from 'vue'
+
+const defaultData = reactive({
+  // 多个时间轴
+  time3: '2021-01-15 00:00:00',
+  timeSegments3: [
+    {
+      name: '时间段1',
+      beginTime: new Date('2021-01-13 10:00:00').getTime(),
+      endTime: new Date('2021-01-14 23:00:00').getTime(),
+      color: '#FA3239',
+      startRatio: 0.65,
+      endRatio: 0.9
+    },
+    {
+      name: '时间段2',
+      beginTime: new Date('2021-01-15 02:00:00').getTime(),
+      endTime: new Date('2021-01-15 18:00:00').getTime(),
+      color: '#836ABB',
+      startRatio: 0.65,
+      endRatio: 0.9
+    }
+  ],
+  windowList: [
+    {
+      name: '窗口1',
+      timeSegments: [
+        {
+          name: '窗口1的时间段1',
+          beginTime: new Date('2021-01-13 10:00:00').getTime(),
+          endTime: new Date('2021-01-14 23:00:00').getTime(),
+          color: '#FA3239',
+          startRatio: 0.1,
+          endRatio: 0.9
+        },
+        {
+          name: '窗口1的时间段2',
+          beginTime: new Date('2021-01-12 18:00:00').getTime(),
+          endTime: new Date('2021-01-13 00:00:00').getTime(),
+          color: '#00AEFF',
+          startRatio: 0.1,
+          endRatio: 0.9
+        }
+      ]
+    },
+    {
+      name: '窗口2',
+      timeSegments: [
+        {
+          name: '窗口2的时间段1',
+          beginTime: new Date('2021-01-15 02:00:00').getTime(),
+          endTime: new Date('2021-01-15 18:00:00').getTime(),
+          color: '#FFCC00',
+          startRatio: 0.1,
+          endRatio: 0.9
+        }
+      ]
+    },
+    {
+      name: '窗口3'
+    },
+    {
+      name: '窗口4'
+    },
+    {
+      name: '窗口5'
+    },
+    {
+      name: '窗口6'
+    }
+  ],
+  timer: null
+})
+
+const showTime3 = computed(() => dayjs(defaultData.time3).format('YYYY-MM-DD HH:mm:ss'))
+const Timeline3 = ref(null)
+
+const timeChange3 = (t) => {
+  defaultData.time3 = t
+}
+const click_timeSegments3 = (arr) => {
+  alert('点击了：' + arr[0].name)
+}
+const click_window_timeSegments = (data, index, item) => {
+  alert('点击了窗口时间轴的时间段：' + data[0].name)
+}
+onMounted(() => {
+  defaultData.timer = setInterval(() => {
+    defaultData.time3 += 1000
+    Timeline3.value.setTime(defaultData.time3)
+  }, 1000)
+})
+
+onBeforeUnmount(() => {
+  clearTimeout(defaultData.timer)
+})
+</script>
+
+<style lang="scss" scoped>
+.container {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+
+  .timeline3 {
+    height: 200px;
+  }
+}
+
+.timeShow {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+}
+</style>
