@@ -5,11 +5,11 @@
 # 安装
 
 ```bash
-npm install time-line
+npm install @boyzcf/vue3-time-line
 or
-pnpm install time-line
+pnpm install @boyzcf/vue3-time-line
 or
-yarn add time-line
+yarn add @boyzcf/vue3-time-line
 ```
 
 # 全局引入
@@ -499,7 +499,7 @@ onBeforeUnmount(() => {
 那么如果内置的规则不满足的话，就可以自定义，比如`3天`的时间分辨率下我想只显示`12`倍数的小时，可以这么做：
 
 ```html
-<TimeLine :customShowTime="customShowTime""></TimeLine>
+<TimeLine :customShowTime="customShowTime"></TimeLine>
 ```
 
 ```js

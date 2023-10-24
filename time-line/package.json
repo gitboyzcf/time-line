@@ -1,5 +1,5 @@
 {
-  "name": "time-line",
+  "name": "@boyzcf/vue3-time-line",
   "version": "0.0.1",
   "private": false,
   "description": "一个基于Vue3、Vite的时间轴组件，一般用于监控视频的回放",
@@ -12,7 +12,8 @@
     }
   },
   "keywords": [
-    "vue3-time-line",
+    "vue3",
+    "@boyzcf/vue3-time-line",
     "canvas",
     "timeline",
     "time axis"
@@ -28,5 +29,9 @@
   },
   "dependencies": {
     "dayjs": "^1.11.10"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

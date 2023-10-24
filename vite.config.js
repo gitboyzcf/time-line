@@ -9,11 +9,11 @@ import { resolve } from 'path'
 export default defineConfig({
   plugins: [vue(), vueJsx()],
   build: {
-    outDir: 'time-line',
+    outDir: 'vue3-time-line',
     lib: {
       entry: resolve(__dirname, './src/components/TimeLine/index.js'), //指定组件编译入口文件
-      name: 'time-line',
-      fileName: 'time-line'
+      name: 'vue3-time-line',
+      fileName: 'vue3-time-line'
     }
   },
   rollupOptions: {
